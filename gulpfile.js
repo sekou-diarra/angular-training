@@ -29,9 +29,9 @@ var paths = {
     'test/spec/**/*.js'
   ],
   karma: 'karma.conf.js',
-  views: {
+  template: {
     main: yeoman.app + '/index.html',
-    files: [yeoman.app + '/views/**/*.html']
+    files: [yeoman.app + '/template/**/*.html']
   }
 };
 
@@ -92,7 +92,7 @@ gulp.task('watch', function () {
     .pipe(styles())
     .pipe($.connect.reload());
 
-  $.watch(paths.views.files)
+  $.watch(paths.template.files)
     .pipe($.plumber())
     .pipe($.connect.reload());
 
@@ -134,12 +134,12 @@ gulp.task('test', ['start:server:test'], function () {
 
 // inject bower components
 gulp.task('bower', function () {
-  return gulp.src(paths.views.main)
+  return gulp.src(paths.template.main)
     .pipe(wiredep({
       directory: yeoman.app + '/bower_components',
       ignorePath: '..'
     }))
-  .pipe(gulp.dest(yeoman.app + '/views'));
+  .pipe(gulp.dest(yeoman.app + '/template'));
 });
 
 ///////////
@@ -154,7 +154,7 @@ gulp.task('client:build', ['html', 'styles'], function () {
   var jsFilter = $.filter('**/*.js');
   var cssFilter = $.filter('**/*.css');
 
-  return gulp.src(paths.views.main)
+  return gulp.src(paths.template.main)
     .pipe($.useref({searchPath: [yeoman.app, '.tmp']}))
     .pipe(jsFilter)
     .pipe($.ngAnnotate())
@@ -169,8 +169,8 @@ gulp.task('client:build', ['html', 'styles'], function () {
 });
 
 gulp.task('html', function () {
-  return gulp.src(yeoman.app + '/views/**/*')
-    .pipe(gulp.dest(yeoman.dist + '/views'));
+  return gulp.src(yeoman.app + '/template/**/*')
+    .pipe(gulp.dest(yeoman.dist + '/template'));
 });
 
 gulp.task('images', function () {

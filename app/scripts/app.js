@@ -1,25 +1,10 @@
 'use strict';
-
-/**
- * @ngdoc overview
- * @name angularTrainingApp
- * @description
- * # angularTrainingApp
- *
- * Main module of the application.
- */
-angular
-  .module('angularTrainingApp', [
-    'ngCookies',
-    'ngMessages',
-    'ngResource',
-    'ngRoute'
-  ])
-  .config(function ($routeProvider) {
+var myModule = angular
+  .module('angularTrainingApp', ['ngRoute']);
+  myModule.config(function ($routeProvider) {
     $routeProvider
       .when('/', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl',
+        templateUrl: 'index.html',
         controllerAs: 'main'
       })
       .otherwise({

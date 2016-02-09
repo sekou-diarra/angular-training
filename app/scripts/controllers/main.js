@@ -14,4 +14,7 @@ angular.module('angularTrainingApp')
       'AngularJS',
       'Karma'
     ];
+   this.alertThing= function (thing){
+      alert(thing);
+    };
   });
