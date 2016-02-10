@@ -50,8 +50,9 @@
     <div class="col-md-4">
       <h2>Things</h2>
       <div
-           ng-repeat="thing in main.awesomeThings" ng-click="main.alertThing(thing)">
-        <h4>{{thing}}</h4>
+           ng-repeat="story in main.stories" ng-click="main.setCurrentStory(story)">
+        <h4>{story.title}}</h4>
+        <p>{{story.description}}</p>
       </div>
 
     </div>
