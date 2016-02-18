@@ -8,6 +8,9 @@ var lazypipe = require('lazypipe');
 var rimraf = require('rimraf');
 var wiredep = require('wiredep').stream;
 var runSequence = require('run-sequence');
+var babel = require("gulp-babel");
+var concat = require("gulp-concat");
+var sourcemaps = require("gulp-sourcemaps");
 
 var yeoman = {
   app: require('./bower.json').appPath || 'app',
@@ -50,6 +53,15 @@ var styles = lazypipe()
 ///////////
 // Tasks //
 ///////////
+
+ggulp.task("default", function () {
+  return gulp.src("src/**/*.js")
+    .pipe(sourcemaps.init())
+    .pipe(babel())
+    .pipe(concat("all.js"))
+    .pipe(sourcemaps.write("."))
+    .pipe(gulp.dest("dist"));
+});
 
 gulp.task('styles', function () {
   return gulp.src(paths.styles)
